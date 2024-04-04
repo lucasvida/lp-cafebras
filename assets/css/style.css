@@ -20,9 +20,20 @@
     --font-size-xxl: 3em;
 }
 
-html {
+/* RESET CSS */
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html{
+    list-style: none;
+    outline: none;
+    font-family: var(--font-principal-lp);
     scroll-behavior: smooth;
-  }
+}
 
 
 @layer css-principal{
