@@ -324,6 +324,7 @@
     const form = document.querySelector('form');
     const escolha = document.querySelector('#escolha-cafe');
     const quantidade = document.querySelector("#quantidade");
+    const quantidade2un = document.querySelector("#quantidade-2un")
     const parcelamento = document.querySelector("#parcelamento");
     const parcelas = document.querySelector("#parcelas");
     // const urlForm = 'http://127.0.0.1:5500/index.html#form'
@@ -361,12 +362,14 @@
                 parcelamento.style.display = "none";
                 quantidade.style.display = "none";
                 parcelas.value = " ";
+                quantidade2un.value = "0";
                 escolha.value = '1 UNIDADE';
                 window.location = urlForm;
             }else if(btnCompra.id === '2unidades'){
                 escolha.value = '2 UNIDADES';
                 parcelamento.style.display = "none";
                 quantidade.style.display = "block";
+                quantidade2un.value = "1";
                 parcelas.value = " ";
                 window.location = urlForm;
             }else if(btnCompra.id === 'kit6unidades'){
@@ -374,6 +377,7 @@
                 quantidade.style.display = "none";
                 escolha.value = 'KIT 6 CAFES + MOEDOR';
                 parcelas.value = "1 VEZ";
+                quantidade2un.value = "0";
                 window.location = urlForm;
             } else {
                 alert("Erro ao escolher");
@@ -386,15 +390,18 @@
        if(escolha.value === '1 UNIDADE'){
             parcelamento.style.display = "none";
             quantidade.style.display = "none";
+            quantidade2un.value = "0";
             parcelas.value = " ";
        }else if(escolha.value === '2 UNIDADES'){
             parcelamento.style.display = "none";
             quantidade.style.display = "block";
+            quantidade2un.value = "1";
             parcelas.value = " ";
        }else if(escolha.value === 'KIT 6 CAFES + MOEDOR'){
 
             parcelamento.style.display = "block";
             quantidade.style.display = "none";
+            quantidade2un.value = "0";
             parcelas.value = "1 VEZ";
        } else {
         alert("Erro ao Selecionar");
