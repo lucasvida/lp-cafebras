@@ -20,7 +20,8 @@
     <!-- PRIMEIRA DOBRA -->
     <section class="lp-cafebras-banner">
         <a href="#form">
-            <img src="assets/img/banner-lp-cafebras-pre-lancamento-desktop.png" alt="Banner Cafébras - Fabiano Diniz">
+            <img src="assets/img/banner-lp-cafebras-pre-lancamento-desktop.png" alt="Banner Cafébras - Fabiano Diniz" class="desktop">
+            <img src="assets/img/banner-lp-cafebras-pre-lancamento-mob.png" alt="Banner Cafébras - Fabiano Diniz" class="mobile">
         </a>
     </section>
      <!-- SEGUNDA DOBRA -->
@@ -90,7 +91,8 @@
     <!-- TERCEIRA DOBRA -->
     <section class="lp-cafebras-sobre-cafe">
        <a href="#form">
-        <img src="assets/img/sobre-cafebras-pre-lancamento-desktop.png" alt="Sobre os Cafés de Pré-Lançaamento">
+        <img src="assets/img/sobre-cafebras-pre-lancamento-desktop.png" alt="Sobre os Cafés de Pré-Lançaamento" class="desktop">
+        <img src="assets/img/sobre-cafebras-pre-lancamento-mob.png" alt="Sobre os Cafés de Pré-Lançaamento" class="mobile">
        </a>
        
         <div class="tire-suas-duvidas">
@@ -142,7 +144,8 @@
     <section class="lp-cafebras-sobre-cafe">
 
         <a href="#form" onclick="reservar('6cafes')">
-            <img src="assets/img/selecao-kit-6-cafes.png" alt="Kit com 6 Cafés">
+            <img src="assets/img/selecao-kit-6-cafes.png" alt="Kit com 6 Cafés" class="desktop">
+            <img src="assets/img/selecao-kit-6-cafes-mob.png" alt="Kit com 6 Cafés" class="mobile">
         </a>
         
          <div class="tire-suas-duvidas">
@@ -171,20 +174,48 @@
                 especial com os grãos premiados no concurso Origens Brasileiras Cafebras.</p>
         </div>
        
-        <div class="escolha-de-cafes">
+        <div class="escolha-de-cafes desktop">
             <div class="tabela-precos">
                 <img src="assets/img/escolha-de-cafes.png" alt="Escolha o café">
             </div>
             <div class="cta-comprar">
                
-                    <button class="btn-compra" id="1unidade">COMPRAR</button>
+                    <button class="btn-compra" id="1unidade">RESERVAR</button>
                
-                    <button class="btn-compra" id="2unidades">COMPRAR</button>
+                    <button class="btn-compra" id="2unidades">RESERVAR</button>
                
-                    <button class="btn-compra" id="kit6unidades">COMPRAR</button>
+                    <button class="btn-compra" id="kit6unidades">RESERVAR</button>
                
             </div>
         </div>
+        <div class="escolha-de-cafes mobile">
+            
+            
+            <div class="escolha-de-cafes-mobile">
+                <div class="produto">
+                    <img src="assets/img/card-produto-01.png" alt="Produto 01">
+                    <div class="space">
+                        <button class="btn-compra" id="1unidade">RESERVAR</button>
+                    </div>
+               </div>
+               <hr>
+               <div class="produto">
+                    <img src="assets/img/card-produto-01.png" alt="Produto 01">
+                    <div class="space">
+                    <button class="btn-compra" id="2unidades">RESERVAR</button>
+                    </div>
+               </div>
+               <hr>
+               <div class="produto">
+                    <img src="assets/img/card-produto-01.png" alt="Produto 01">
+                    <div class="space">
+                    <button class="btn-compra" id="kit6unidades">RESERVAR</button>
+                </div>
+
+               </div>
+            </div>
+        
+     </div>
         <div class="tire-suas-duvidas">
              
                  <span class="btn-whatsapp">
@@ -203,6 +234,9 @@
              
           </div>
      </section>
+
+     
+    </div>
      <!-- SÉTIMA DOBRA -->
      <section class="form">
         <div class="container flex">
@@ -232,20 +266,41 @@
             
             <div class="formulario" id="form">
                 <form id="myForm" action="https://hook.us1.make.com/0t8blskdktdzg1dvv90fcdefxirze46g" method="post" onsubmit="handleSubmit(event)">
-                    <label for="nome">Nome: *</label><br>
+                    <label for="nome" class="label">Nome: *</label><br>
                     <input type="text" id="nome" name="nome" value="" placeholder="Digite Seu Nome" required><br><br>
 
-                    <label for="sobrenome">Sobrenome: *</label><br>
-                    <input type="text" id="sobrenome" name="sobrenome" value="" placeholder="Digite Seu sobrenome" required><br><br>
+                    <!-- <label for="sobrenome">Sobrenome: *</label><br>
+                    <input type="text" id="sobrenome" name="sobrenome" value="" placeholder="Digite Seu sobrenome" required><br><br> -->
 
-                    <label for="sobrenome">Minha escolha: *</label><br>
+                    <label for="telefone">Telefone Celular: *</label><br>
+                    <input type="text" id="telefone" name="tel" value="" placeholder="(XX) XXXXX-XXXX" oninput="mascaraTelefone(this)" maxlength="15" inputmode="tel" required><br><br>
+
+
+                    <label for="minha-escolha">Minha escolha: *</label><br>
                     <select name="cafe-especial" id="escolha-cafe" required>
                         <option value="1 UNIDADE" name="cafe-especial">1  UNIDADE</option>
                         <option value="2 UNIDADES" name="cafe-especial">2  UNIDADES</option>
                         <option value="KIT 6 CAFES + MOEDOR" name="cafe-especial">6 UNIDADES + MOEDOR GRÁTIS</option>
                     </select><br><br>
 
-                    <label for="nome">E-mail de Assinante: *</label><br>
+                    <div id="quantidade">
+                        <label for="quantidade">Quantidades de Cafés de 2  Unidades: *</label><br>
+                            <input type="number" inputmode="numeric" maxlength="2" max="10" value="0" id="quantidade-2un" name="quantidade-2un" required><br><br>
+                    </div>
+
+                    <div id="parcelamento">
+                        <label for="minha-escolha">Parcelamento: *</label><br>
+                            <select name="parcelas" id="parcelas">
+                                <option value="1 VEZ" name="parcelas">1 PARCELA ÚNICA</option>
+                                <option value="2 VEZES" name="parcelas">2x SEM JUROS</option>
+                                <option value="3 VEZES" name="parcelas">3x SEM JUROS</option>
+                                <option value="4 VEZES" name="parcelas">4x SEM JUROS</option>
+                                <option value="5 VEZES" name="parcelas">5x SEM JUROS</option>
+                                <option value="6 VEZES" name="parcelas">6x SEM JUROS</option>
+                            </select><br><br>
+                    </div>
+
+                    <label for="email">E-mail de Assinante: *</label><br>
                     <input type="email" id="email" name="email" value="" placeholder="Digite E-mail da Sua Assinatura" required><br><br>
 
                     <input type="submit" value="RESERVAR MEU CAFÉ">
@@ -266,33 +321,88 @@
     ScrollReveal().reveal('.banner-todas-edicoes',{ delay: 500 });
 
     const btnComprar = document.querySelectorAll('.btn-compra');
+    const form = document.querySelector('form');
     const escolha = document.querySelector('#escolha-cafe');
-    //const urlForm = 'http://127.0.0.1:5500/index.html#form'
-    const urlForm = 'https://lucasvida.github.io/lp-cafebras/#form'
+    const quantidade = document.querySelector("#quantidade");
+    const parcelamento = document.querySelector("#parcelamento");
+    const parcelas = document.querySelector("#parcelas");
+    const urlForm = 'http://127.0.0.1:5500/index.html#form'
+    // const urlForm = 'https://lucasvida.github.io/lp-cafebras/#form'
+
+
+    const urlLp = new URL(window.location.href);
+    // Obter valores dos parâmetros de pesquisa
+    const nome = urlLp.searchParams.get('nome');
+    const email = urlLp.searchParams.get('email');
+
+    if ( nome !== "" || email !== ""){
+        form.nome.value = nome;
+        form.email.value = email;
+    }
+
+
+    parcelas.value = " ";
+    
 
     function reservar(valor){
        if( valor === '6cafes'){
         escolha.value = 'KIT 6 CAFES + MOEDOR';
+        parcelamento.style.display = "block";
+                quantidade.style.display = "none";
+                parcelas.value = "1 VEZ";
                 window.location = urlForm;
+                
        }
     }
 
     for (let btnCompra of btnComprar){
         btnCompra.addEventListener('click',()=> {
             if(btnCompra.id === '1unidade'){
+                parcelamento.style.display = "none";
+                quantidade.style.display = "none";
+                parcelas.value = " ";
                 escolha.value = '1 UNIDADE';
                 window.location = urlForm;
             }else if(btnCompra.id === '2unidades'){
                 escolha.value = '2 UNIDADES';
+                parcelamento.style.display = "none";
+                quantidade.style.display = "block";
+                parcelas.value = " ";
                 window.location = urlForm;
             }else if(btnCompra.id === 'kit6unidades'){
+                parcelamento.style.display = "block";
+                quantidade.style.display = "none";
                 escolha.value = 'KIT 6 CAFES + MOEDOR';
+                parcelas.value = "1 VEZ";
                 window.location = urlForm;
             } else {
                 alert("Erro ao escolher");
             }
         })
     }
+
+    escolha.addEventListener('change',()=>{
+       console.log(escolha.value);
+       if(escolha.value === '1 UNIDADE'){
+            parcelamento.style.display = "none";
+            quantidade.style.display = "none";
+            parcelas.value = " ";
+       }else if(escolha.value === '2 UNIDADES'){
+            parcelamento.style.display = "none";
+            quantidade.style.display = "block";
+            parcelas.value = " ";
+       }else if(escolha.value === 'KIT 6 CAFES + MOEDOR'){
+
+            parcelamento.style.display = "block";
+            quantidade.style.display = "none";
+            parcelas.value = "1 VEZ";
+       } else {
+        alert("Erro ao Selecionar");
+       }
+
+       
+
+    })      
 
 
     //Contador
@@ -363,6 +473,38 @@
             .catch(error => {
                 console.error('Erro:', error);
             });
+        }
+
+
+        //Valida Telefone
+        function mascaraTelefone(input) {
+        var telefone = input.value.replace(/\D/g, '');
+
+        // Verifica se o usuário pressionou a tecla "Backspace"
+        if (event && event.inputType === "deleteContentBackward") {
+            input.value = '';
+            return;
+        }
+
+        var padrao = /(\d{2})(\d{0,5})(\d{0,4})/;
+        var telefoneFormatado = telefone.replace(padrao, function(match, p1, p2, p3) {
+            var numeroFormatado = '(' + p1 + ') ';
+            if (p2 !== '') {
+            numeroFormatado += p2 + (p3 !== '' ? '-' : '');
+            }
+            numeroFormatado += p3;
+            return numeroFormatado;
+        });
+        input.value = telefoneFormatado;
+
+        // Define a posição do cursor após a formatação
+        var cursorPos = input.selectionStart;
+        var lastParenthesisPos = input.value.lastIndexOf(')');
+        var firstSpaceAfterParenthesisPos = input.value.indexOf(' ', lastParenthesisPos);
+        if (cursorPos > firstSpaceAfterParenthesisPos) {
+            cursorPos++;
+        }
+        input.setSelectionRange(cursorPos, cursorPos);
         }
     
 </script>

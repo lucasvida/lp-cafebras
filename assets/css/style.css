@@ -63,9 +63,6 @@ html{
         text-align: center;
     }
 
-
-
-
     .fonte-primaria{
         font-family: var(--font-principal-lp);
     }
@@ -109,6 +106,18 @@ html{
 
     .underline{
     text-decoration: underline;
+    }
+
+    .desktop{
+        display: block;
+    }
+
+    .mobile{
+        display: none;
+    }
+
+    .escolha-de-cafes-mobile{
+        display: none;
     }
 
 
@@ -277,8 +286,6 @@ scale: 1;
         color:#3fc250;
     }
 }
-
-
 
 @layer quarta-dobra {
 
@@ -488,8 +495,327 @@ scale: 1;
         cursor: pointer;
     }
 
-  
+    input[type="number"]{
+        text-align: center;
+    }
+
+
+    #quantidade{
+        display: none;
+    }
+
+    #parcelamento{
+        display: none;
+    }
        
         
     
+}
+
+@layer mobile {
+
+    @media screen and (max-width:480px){
+
+        @layer css-principal{
+            .desktop {
+                display: none;
+            }
+
+            .mobile{
+                display: block;
+            }
+
+            .title-h1{
+                font-family: var(--font-principal-lp);
+                font-size: 2rem;
+                text-align: center;
+            }
+        
+            .title-h2{
+                font-family: var(--font-principal-lp);
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .font-size-xl{
+                font-size: 1.5em;
+            }
+
+            .font-size-l{
+                font-size: 1.2em;
+            }
+
+            .font-size-m{
+                font-size: 1em;
+            }
+        }
+
+        @layer segunda-dobra{
+            .cafe-conteudo{
+                flex-direction: column;
+            }
+
+            .conteudo-direita{
+                width: 100%;
+                padding: 0px;
+            }
+            
+            .conteudo-esquerda{
+                width: 100%;
+                padding: 0px;
+            }
+
+            .blocos-informacoes {
+                width: 90%;
+                font-size: 0.75em;
+            }
+
+            .produtor-badge img{
+                width: 90%;
+            }
+        }
+
+        @layer terceira-dobra{
+            .btn-whatsapp  {
+                font-size: 1em;
+             }
+
+             .btn-whatsapp img {
+                width: 20px;
+                height: 20px;
+             }
+
+             .cor-secundaria em{
+                font-size: 0.85em;
+             }
+
+             .tire-suas-duvidas{
+                /* margin-top: -65px; */
+             }
+        }
+
+        @layer quarta-dobra{
+
+            .conteudo-todas-edicoes{
+               
+                flex-direction: column-reverse;
+               }
+
+               .conteudo-direita-edicoes{
+                width: 100%;
+                padding: 0px;
+                
+            }
+            
+            .conteudo-esquerda-edicoes{
+                width: 100%;
+                padding: 0px;
+                
+            }
+
+            
+                .edicao-limitada{
+                    width: 100%;
+                    margin-top: -75px;
+                }
+
+                .mapa img{
+                    width: 100%;
+                }
+                
+
+        }
+
+
+        @layer sexta-dobra{
+
+            .conteudo-todas-edicoes{
+               
+                flex-direction: column-reverse;
+               }
+
+               .conteudo-direita-edicoes{
+                width: 100%;
+                padding: 0px;
+                
+            }
+            
+            .conteudo-esquerda-edicoes{
+                width: 100%;
+                padding: 0px;
+                
+            }
+
+            
+                .edicao-limitada{
+                    width: 100%;
+                    margin-top: -75px;
+                }
+            
+                .container-p{
+                    padding: 5px;
+                    width: 100%;
+                 }
+
+                 .cta-comprar{
+                    width: 100%;
+                    padding: 0px;
+                    margin-top: 0px;
+                 }
+
+            
+
+                 .escolha-de-cafes-mobile{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    padding: 25px;
+                    width: 85%;
+                    
+                 }
+
+                 .escolha-de-cafes-mobile img{
+                    width: 100%;
+                 }
+
+                 .btn-compra, .produto{
+                    padding: 10px;
+                    margin-top: 25px;
+                 }
+
+                 .produto{
+                    margin-top: 10px;
+                 }
+
+                 .space{
+                    margin-top: 25px;
+                    margin-bottom: 25px;
+                 }
+
+                 hr{
+                    width: 100%;
+                 }
+
+
+
+        }
+
+        @layer setima-dobra{
+
+            .form{
+                flex-direction: column;
+            }
+            .contador{
+                width: 100%;
+                padding: 25px;
+            }
+            .formulario{
+                width: 100%;
+                text-align: center;
+                padding: 5px;
+                margin-bottom: 50px;
+            }
+
+            .flex{
+                flex-direction: column;
+            }
+            
+            
+            .label{
+                text-align: left !important;
+            } 
+
+        }
+
+        @layer contador{
+            /*Estilo Geral*/
+           
+                        ul{
+                            width: 100%;
+                            padding: 0px;
+                        }
+               
+                       .contador{
+                          
+                           padding: 0px;
+                           
+                       }
+           
+                       .contador li {
+                           font-size: 0.75em;
+                           padding: 1em;
+                          
+                       }
+               
+                       .contador li span {
+                           display: block;
+                           font-size: 4em;
+                       }
+                       
+                       
+               
+                     
+           
+           #countdown{
+
+           width: 100%;
+           }
+           
+        
+               
+       }
+
+       @layer formulario{
+    
+        input{
+            width: 85%;
+            color: #141414;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+        }
+    
+    
+        input::placeholder{
+            color:  #19A0FC;
+        }
+    
+        input:focus {
+            background-color: #edf8ff;
+        }
+    
+        input[type="submit"]{
+            background-color: #19A0FC;
+            color: #FFFFFF;
+            width: 93%;
+            cursor: pointer;
+        }
+
+        
+    
+        select{
+            width: 93%;
+            padding: 15px;
+            color: #141414;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+      
+           
+            
+        
+    }
+       
+
+
+
+
+
+    }
+
 }
