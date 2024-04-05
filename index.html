@@ -303,6 +303,8 @@
                     <label for="email">E-mail de Assinante: *</label><br>
                     <input type="email" id="email" name="email" value="" placeholder="Digite E-mail da Sua Assinatura" required><br><br>
 
+                    <input type="hidden" value="" id="time-stamp" name="time-stamp">
+
                     <input type="submit" value="RESERVAR MEU CAFÉ">
                 </form>
             </div>
@@ -329,6 +331,11 @@
     const parcelas = document.querySelector("#parcelas");
     // const urlForm = 'http://127.0.0.1:5500/index.html#form'
     const urlForm = 'https://lucasvida.github.io/lp-cafebras/#form'
+    const dataEnvio = document.querySelector("#time-stamp")
+
+    const timeStamp = new Date();
+    const dataFormatada = timeStamp.toLocaleDateString('pt-BR');
+    dataEnvio.value = dataFormatada;
 
 
     const urlLp = new URL(window.location.href);
@@ -462,6 +469,7 @@
 
       function handleSubmit(event) {
             event.preventDefault(); // Evita o envio padrão do formulário
+
             
             // Envie os dados do formulário para o webhook usando fetch ou outra biblioteca de sua escolha
             fetch('https://hook.us1.make.com/0t8blskdktdzg1dvv90fcdefxirze46g', {
