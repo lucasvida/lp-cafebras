@@ -19,7 +19,7 @@
 <main>
     <!-- PRIMEIRA DOBRA -->
     <section class="lp-cafebras-banner">
-        <a href="#form">
+        <a href="#reservar">
             <img src="assets/img/banner-lp-cafebras-pre-lancamento-desktop.png" alt="Banner Cafébras - Fabiano Diniz" class="desktop">
             <img src="assets/img/banner-lp-cafebras-pre-lancamento-mob.png" alt="Banner Cafébras - Fabiano Diniz" class="mobile">
         </a>
@@ -90,7 +90,7 @@
     </section>
     <!-- TERCEIRA DOBRA -->
     <section class="lp-cafebras-sobre-cafe">
-       <a href="#form">
+       <a href="#reservar">
         <img src="assets/img/sobre-cafebras-pre-lancamento-desktop.png" alt="Sobre os Cafés de Pré-Lançaamento" class="desktop">
         <img src="assets/img/sobre-cafebras-pre-lancamento-mob.png" alt="Sobre os Cafés de Pré-Lançaamento" class="mobile">
        </a>
@@ -143,7 +143,7 @@
     <!--  QUINTA DOBRA -->
     <section class="lp-cafebras-sobre-cafe">
 
-        <a href="#form" onclick="reservar('6cafes')">
+        <a href="#reservar">
             <img src="assets/img/selecao-kit-6-cafes.png" alt="Kit com 6 Cafés" class="desktop">
             <img src="assets/img/selecao-kit-6-cafes-mob.png" alt="Kit com 6 Cafés" class="mobile">
         </a>
@@ -166,7 +166,7 @@
           </div>
      </section>
       <!-- SEXTA DOBRA -->
-    <section class="lp-escolha-o-cafe">
+    <section class="lp-escolha-o-cafe" id="reservar">
 
         <div class="header-tabela-preco">
             <span class="title-h1 cor-dourada">CONDIÇÕES ESPECIAIS PARA RESERVA</span>
@@ -278,13 +278,13 @@
 
                     <label for="minha-escolha">Minha escolha: *</label><br>
                     <select name="cafe-especial" id="escolha-cafe" required>
-                        <option value="1 UNIDADE" name="cafe-especial">1  UNIDADE</option>
-                        <option value="2 UNIDADES" name="cafe-especial">2  UNIDADES</option>
-                        <option value="KIT 6 CAFES + MOEDOR" name="cafe-especial">6 UNIDADES + MOEDOR GRÁTIS</option>
+                        <option value="MATAS DE MINAS" name="cafe-especial" class="xpto">MATAS DE MINAS</option>
+                        <option value="2 UNIDADES" name="cafe-especial">CAFÉ MATAS DE MINAS</option>
+                        <option value="KIT 6 CAFES + MOEDOR" name="cafe-especial">COLEÇÃO COMPLETA + MOEDOR</option>
                     </select><br><br>
 
                     <div id="quantidade">
-                        <label for="quantidade">Quantidades de Cafés de 2  Unidades: *</label><br>
+                        <label for="quantidade">Escolha a Quantidades de Cafés: *</label><br>
                             <input type="number" inputmode="numeric" maxlength="2" max="10" value="0" id="quantidade-2un" name="quantidade-2un" required><br><br>
                     </div>
 
@@ -296,7 +296,7 @@
                                 <option value="3 VEZES" name="parcelas">3x SEM JUROS</option>
                                 <option value="4 VEZES" name="parcelas">4x SEM JUROS</option>
                                 <option value="5 VEZES" name="parcelas">5x SEM JUROS</option>
-                                <option value="6 VEZES" name="parcelas">6x SEM JUROS</option>
+                                <option value="6 VEZES" name="parcelas" selected>6x SEM JUROS</option>
                             </select><br><br>
                     </div>
 
@@ -306,6 +306,7 @@
                     <input type="hidden" value="" id="time-stamp" name="time-stamp">
 
                     <input type="submit" value="RESERVAR MEU CAFÉ">
+                    <em>Ao reservar este produto estou ciente que irei receber o mesmo na minha assinatura e que o valor será debitado do meu cartão</em>
                 </form>
             </div>
         </div>
@@ -329,9 +330,11 @@
     const quantidade2un = document.querySelector("#quantidade-2un")
     const parcelamento = document.querySelector("#parcelamento");
     const parcelas = document.querySelector("#parcelas");
-    // const urlForm = 'http://127.0.0.1:5500/index.html#form'
-    const urlForm = 'https://lucasvida.github.io/lp-cafebras/#form'
-    const dataEnvio = document.querySelector("#time-stamp")
+    const urlForm = 'http://127.0.0.1:5500/index.html#form';
+    // const urlForm = 'https://lucasvida.github.io/lp-cafebras/#form'
+    const cafePadrao = 50.00;
+    const cafePromocional = 40.60;
+    const dataEnvio = document.querySelector("#time-stamp");
 
     const timeStamp = new Date();
     const dataFormatada = timeStamp.toLocaleDateString('pt-BR');
@@ -409,7 +412,7 @@
             parcelamento.style.display = "block";
             quantidade.style.display = "none";
             quantidade2un.value = "0";
-            parcelas.value = "1 VEZ";
+            parcelas.value = "6 VEZES";
        } else {
         alert("Erro ao Selecionar");
        }
