@@ -497,16 +497,66 @@ scale: 1;
 
     input[type="number"]{
         text-align: center;
+        width: 50%;
+        border-radius: 0px;
     }
+
+    input[type=number]::-webkit-inner-spin-button { 
+        -webkit-appearance: none;
+        
+    }
+    input[type=number] { 
+       -moz-appearance: textfield;
+       appearance: textfield;
+    
+    }
+    
 
 
     #quantidade{
-        display: none;
+        display: block;
     }
 
     #parcelamento{
         display: none;
     }
+
+    .seletor-quantidade{
+        display: flex;
+        width: 95%;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        justify-content: center;
+    }
+
+    .seletor-quantidade button{
+    border: none;
+    width: 50px;
+    height: 50px;
+    background-color: #19A0FC;
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 5px;
+    color: #FFFFFF;
+    }
+
+    .aceite{
+        font-size: 0.85em;
+        align-items: center;
+        margin-top: 15px;
+        padding: 10px;
+        width: 90%;
+    }
+
+    .total{
+        width: 85%;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+
        
         
     
@@ -804,6 +854,19 @@ scale: 1;
             border-radius: 5px;
             cursor: pointer;
         }
+
+       
+
+        input[type="number"]{
+            border-radius: 0px;
+        }
+        .seletor-quantidade{
+
+            width: 100%;
+   
+        }
+    
+
     
       
            

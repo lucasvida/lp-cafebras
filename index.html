@@ -278,25 +278,29 @@
 
                     <label for="minha-escolha">Minha escolha: *</label><br>
                     <select name="cafe-especial" id="escolha-cafe" required>
-                        <option value="MATAS DE MINAS" name="cafe-especial" class="xpto">MATAS DE MINAS</option>
-                        <option value="2 UNIDADES" name="cafe-especial">CAFÉ MATAS DE MINAS</option>
+                        <!-- <option value="MATAS DE MINAS" name="cafe-especial" class="xpto">MATAS DE MINAS</option> -->
+                        <option value="MATAS DE MINAS" name="cafe-especial">CAFÉ MATAS DE MINAS</option>
                         <option value="KIT 6 CAFES + MOEDOR" name="cafe-especial">COLEÇÃO COMPLETA + MOEDOR</option>
                     </select><br><br>
 
                     <div id="quantidade">
                         <label for="quantidade">Escolha a Quantidades de Cafés: *</label><br>
-                            <input type="number" inputmode="numeric" maxlength="2" max="10" value="0" id="quantidade-2un" name="quantidade-2un" required><br><br>
+                        <div class="seletor-quantidade">
+                            <button id="menos"> - </span></button>
+                            <input type="number" inputmode="numeric" maxlength="2" max="10" value="1" id="quantidade-selecao" name="quantidade-selecao" required><br><br>
+                        <button id="mais"> + </button>
+                        </div>
                     </div>
 
                     <div id="parcelamento">
                         <label for="minha-escolha">Parcelamento: *</label><br>
                             <select name="parcelas" id="parcelas">
-                                <option value="1 VEZ" name="parcelas">1 PARCELA ÚNICA</option>
-                                <option value="2 VEZES" name="parcelas">2x SEM JUROS</option>
-                                <option value="3 VEZES" name="parcelas">3x SEM JUROS</option>
-                                <option value="4 VEZES" name="parcelas">4x SEM JUROS</option>
-                                <option value="5 VEZES" name="parcelas">5x SEM JUROS</option>
-                                <option value="6 VEZES" name="parcelas" selected>6x SEM JUROS</option>
+                                <option value="1 VEZ" name="parcelas" data-parcerla="1">1 PARCELA ÚNICA</option>
+                                <option value="2 VEZES" name="parcelas" data-parcerla="2">2x SEM JUROS</option>
+                                <option value="3 VEZES" name="parcelas" data-parcerla="3">3x SEM JUROS</option>
+                                <option value="4 VEZES" name="parcelas" data-parcerla="4">4x SEM JUROS</option>
+                                <option value="5 VEZES" name="parcelas" data-parcerla="5">5x SEM JUROS</option>
+                                <option value="6 VEZES" name="parcelas" data-parcerla="6" selected>6x SEM JUROS</option>
                             </select><br><br>
                     </div>
 
@@ -304,9 +308,15 @@
                     <input type="email" id="email" name="email" value="" placeholder="Digite E-mail da Sua Assinatura" required><br><br>
 
                     <input type="hidden" value="" id="time-stamp" name="time-stamp">
+                    <input type="hidden" value="" id="utms" name="utms">
 
+                    <div class="total">
+
+                    </div>
                     <input type="submit" value="RESERVAR MEU CAFÉ">
-                    <em>Ao reservar este produto estou ciente que irei receber o mesmo na minha assinatura e que o valor será debitado do meu cartão</em>
+                    <div class="aceite">
+                        <em>Ao reservar este produto, estou ciente que irei receber o mesmo na minha assinatura e que o valor será debitado do meu cartão de acordo com os itens selecionados.</em>
+                    </div>
                 </form>
             </div>
         </div>
@@ -323,71 +333,91 @@
     ScrollReveal().reveal('.mapa',{ delay: 500 });
     ScrollReveal().reveal('.banner-todas-edicoes',{ delay: 500 });
 
+    let dadosCafe = {
+        precoNormal: 50.00,
+        precoPromocional: 40.60,
+    }
+
     const btnComprar = document.querySelectorAll('.btn-compra');
     const form = document.querySelector('form');
     const escolha = document.querySelector('#escolha-cafe');
     const quantidade = document.querySelector("#quantidade");
-    const quantidade2un = document.querySelector("#quantidade-2un")
+    const quantidadeSeletor = document.querySelector("#quantidade-selecao")
     const parcelamento = document.querySelector("#parcelamento");
     const parcelas = document.querySelector("#parcelas");
-    const urlForm = 'http://127.0.0.1:5500/index.html#form';
-    // const urlForm = 'https://lucasvida.github.io/lp-cafebras/#form'
-    const cafePadrao = 50.00;
-    const cafePromocional = 40.60;
-    const dataEnvio = document.querySelector("#time-stamp");
+    const totalDiv = document.querySelector(".total");
+    const menos = document.querySelector('#menos');
+    const mais = document.querySelector('#mais');
 
+    var indexParcelas = parcelas.options[parcelas.selectedIndex];
+    var dataParcerlaValue = indexParcelas.getAttribute("data-parcerla");
+
+
+
+    
+
+    const dataEnvio = document.querySelector("#time-stamp");
     const timeStamp = new Date();
     const dataFormatada = timeStamp.toLocaleDateString('pt-BR');
-    dataEnvio.value = dataFormatada;
+    const horaFormatada = timeStamp.toLocaleTimeString('pt-BR');
+    dataEnvio.value = `${dataFormatada} - ${horaFormatada}`;
 
 
     const urlLp = new URL(window.location.href);
+
+    const utmImput = document.querySelector("#utms");
     // Obter valores dos parâmetros de pesquisa
     const nome = urlLp.searchParams.get('nome');
     const email = urlLp.searchParams.get('email');
+    const utmSource = urlLp.searchParams.get('utm_source');
+    const utmCampaign = urlLp.searchParams.get('utm_campaign');
+    const utmMedium = urlLp.searchParams.get('utm_medium');
+    const utmContent = urlLp.searchParams.get('utm_content');
+
+    let utms = [utmSource, utmMedium, utmCampaign, utmContent];
+    sessionStorage.setItem('utms',utms);
+    const valores =  sessionStorage.getItem('utms');
+    utmImput.value = valores;
 
     if ( nome !== "" || email !== ""){
         form.nome.value = nome;
         form.email.value = email;
     }
 
+    const urlBase = window.location;
+    const urlForm = `${urlBase}#form`;
+    // const urlForm = 'https://lucasvida.github.io/lp-cafebras/#form'
+
 
     parcelas.value = " ";
     
-
-    function reservar(valor){
-       if( valor === '6cafes'){
-        escolha.value = 'KIT 6 CAFES + MOEDOR';
-        parcelamento.style.display = "block";
-                quantidade.style.display = "none";
-                parcelas.value = "1 VEZ";
-                window.location = urlForm;
-                
-       }
-    }
 
     for (let btnCompra of btnComprar){
         btnCompra.addEventListener('click',()=> {
             if(btnCompra.id === '1unidade'){
                 parcelamento.style.display = "none";
-                quantidade.style.display = "none";
+                quantidade.style.display = "block";
                 parcelas.value = " ";
-                quantidade2un.value = "0";
-                escolha.value = '1 UNIDADE';
+                quantidadeSeletor.value = "1";
+                escolha.value = 'MATAS DE MINAS';
+                atualizaTotal(1);
                 window.location = urlForm;
             }else if(btnCompra.id === '2unidades'){
-                escolha.value = '2 UNIDADES';
+                escolha.value = 'MATAS DE MINAS';
                 parcelamento.style.display = "none";
                 quantidade.style.display = "block";
-                quantidade2un.value = "1";
+                quantidadeSeletor.value = "2";
+                atualizaTotal(2);
                 parcelas.value = " ";
                 window.location = urlForm;
             }else if(btnCompra.id === 'kit6unidades'){
-                parcelamento.style.display = "block";
+                quantidadeSeletor.value = "0";
                 quantidade.style.display = "none";
+                parcelamento.style.display = "block";
                 escolha.value = 'KIT 6 CAFES + MOEDOR';
-                parcelas.value = "1 VEZ";
-                quantidade2un.value = "0";
+                parcelas.value = "6 VEZES";
+                // Obtém a opção selecionada
+                totalDiv.innerHTML = `Total do seu pedido: R$300,00 <br> (em 6 parcelas de ${parseFloat(300 / 6).toLocaleString("pt-BR",{style: "currency",currency: "BRL",})})`;
                 window.location = urlForm;
             } else {
                 alert("Erro ao escolher");
@@ -395,24 +425,44 @@
         })
     }
 
+
+    function atualizaTotal(quantidadeCafes){
+        if(quantidadeCafes === 1){
+            totalDiv.innerHTML = `Total do seu pedido: ${parseFloat(quantidadeCafes * dadosCafe.precoNormal).toLocaleString("pt-BR",{style: "currency",currency: "BRL",})}`;
+        } else {
+            totalDiv.innerHTML = `Total do seu pedido: ${parseFloat(quantidadeCafes * dadosCafe.precoPromocional).toLocaleString("pt-BR",{ style: "currency", currency: "BRL",})}`;
+    };
+        
+    }
+
+    atualizaTotal(1);
+
     escolha.addEventListener('change',()=>{
        console.log(escolha.value);
-       if(escolha.value === '1 UNIDADE'){
-            parcelamento.style.display = "none";
-            quantidade.style.display = "none";
-            quantidade2un.value = "0";
-            parcelas.value = " ";
-       }else if(escolha.value === '2 UNIDADES'){
+       if(escolha.value === 'MATAS DE MINAS'){
             parcelamento.style.display = "none";
             quantidade.style.display = "block";
-            quantidade2un.value = "1";
+            quantidadeSeletor.value = 1;
+            atualizaTotal(1);
             parcelas.value = " ";
-       }else if(escolha.value === 'KIT 6 CAFES + MOEDOR'){
+       } else if(escolha.value === 'KIT 6 CAFES + MOEDOR'){
 
             parcelamento.style.display = "block";
             quantidade.style.display = "none";
-            quantidade2un.value = "0";
+            quantidadeSeletor.value = "0";
             parcelas.value = "6 VEZES";
+            totalDiv.innerHTML = `Total do seu pedido: R$300,00 <br> (em ${dataParcerlaValue} parcelas de ${parseFloat(300 / dataParcerlaValue).toLocaleString("pt-BR",{style: "currency",currency: "BRL",})})`;
+            parcelas.addEventListener('change',()=>{
+            indexParcelas = parcelas.options[parcelas.selectedIndex];
+            dataParcerlaValue = indexParcelas.getAttribute("data-parcerla");
+            if ( dataParcerlaValue != 1){
+                totalDiv.innerHTML = `Total do seu pedido: R$300,00 <br> (em ${dataParcerlaValue} parcelas de ${parseFloat(300 / dataParcerlaValue).toLocaleString("pt-BR",{style: "currency",currency: "BRL",})})`;
+            } else {
+                totalDiv.innerHTML = `Total do seu pedido: R$300,00 (Parcela Única)`;
+            }
+    })
+
+            
        } else {
         alert("Erro ao Selecionar");
        }
@@ -420,6 +470,45 @@
        
 
     })      
+
+
+    quantidadeSeletor.addEventListener('change', ()=>{
+        if(quantidadeSeletor.value <= 1){
+            quantidadeSeletor.value = 1;
+            atualizaTotal(1);
+        } else {
+            atualizaTotal(quantidadeSeletor.value);
+        }
+    })
+
+
+    mais.addEventListener('click',(event)=>{
+        event.preventDefault();
+        quantidadeSeletor.value =+  quantidadeSeletor.value + 1;
+        if(quantidadeSeletor.value >= 10){
+            quantidadeSeletor.value = 10;
+        }
+        atualizaTotal(quantidadeSeletor.value);
+    })
+
+    menos.addEventListener('click',(event)=>{
+        event.preventDefault();
+        quantidadeSeletor.value =  quantidadeSeletor.value - 1;
+        if(quantidadeSeletor.value <= 1){
+            quantidadeSeletor.value = 1;
+            atualizaTotal(1);
+        } else {
+            atualizaTotal(quantidadeSeletor.value);
+        }
+        
+    })
+
+    
+
+    
+
+
+
 
 
     //Contador
